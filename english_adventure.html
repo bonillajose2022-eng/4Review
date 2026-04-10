@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>English Adventure – Grade 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --primary:#6C63FF;--secondary:#FF6B6B;--accent1:#FFD93D;
+  --accent2:#6BCB77;--accent3:#4D96FF;--bg:#F0F4FF;
+  --card:#fff;--text:#2D2D2D;--muted:#666;--es:#7B5EA7;
+  --r:16px;--sh:0 4px 20px rgba(108,99,255,.12);
+  --sh2:0 8px 30px rgba(108,99,255,.22);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* HEADER */
+.site-header{background:linear-gradient(135deg,var(--primary),#9B59B6);color:#fff;padding:.9rem 1.5rem;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(108,99,255,.35)}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{font-size:2.2rem}
+.logo h1{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;line-height:1.2}
+.logo p{font-size:.72rem;opacity:.85}
+.hamburger{display:none;background:rgba(255,255,255,.2);border:none;color:#fff;font-size:1.4rem;padding:.4rem .8rem;border-radius:8px;cursor:pointer}
+
+/* NAV */
+.main-nav{background:#fff;padding:.55rem 1rem;display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.08);position:sticky;top:68px;z-index:99}
+.nav-btn{background:transparent;border:2px solid transparent;padding:.45rem .9rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;color:var(--muted);cursor:pointer;transition:all .22s}
+.nav-btn:hover{background:var(--bg);color:var(--primary);border-color:var(--primary)}
+.nav-btn.active{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 4px 12px rgba(108,99,255,.35)}
+
+/* MAIN */
+.main-content{max-width:1100px;margin:2rem auto;padding:0 1rem 4rem}
+.section{display:none;animation:fadeIn .4s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* HOME */
+.hero{background:linear-gradient(135deg,var(--primary),#FF6B6B);color:#fff;border-radius:24px;padding:2.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;margin-bottom:2rem;box-shadow:var(--sh2)}
+.hero-text h2{font-family:'Baloo 2',cursive;font-size:1.9rem;font-weight:800;margin-bottom:.4rem}
+.hero-sub{font-size:.95rem;opacity:.85;margin-bottom:.8rem}
+.hero-text p{font-size:.95rem;line-height:1.7;margin-bottom:.4rem}
+.hero-img{font-size:4rem;letter-spacing:-.4rem;flex-shrink:0}
+.btn-start{margin-top:1.2rem;background:#fff;color:var(--primary);border:none;padding:.8rem 1.8rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,.18);transition:all .2s}
+.btn-start:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.28)}
+
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem}
+.topic-card{background:#fff;border-radius:var(--r);padding:1.4rem 1rem;text-align:center;cursor:pointer;box-shadow:var(--sh);transition:all .25s;border:2px solid transparent}
+.topic-card:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:var(--primary)}
+.topic-icon{font-size:2.3rem;margin-bottom:.6rem}
+.topic-card h3{font-family:'Baloo 2',cursive;font-size:1rem;color:var(--primary);margin-bottom:.25rem}
+.topic-card p{font-size:.82rem;color:var(--muted)}
+
+/* UTILS */
+.es-note{color:var(--es);font-style:italic;font-size:.9em}
+.section-title{font-family:'Baloo 2',cursive;font-size:1.8rem;color:var(--primary);margin-bottom:1.4rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.section-title .es-note{font-size:.9rem;font-family:'Nunito',sans-serif}
+
+.info-box{border-radius:var(--r);padding:1.4rem 1.8rem;margin-bottom:1.8rem;border-left:6px solid}
+.info-box h3{font-family:'Baloo 2',cursive;font-size:1.1rem;margin-bottom:.6rem}
+.info-box p{line-height:1.7;margin-bottom:.4rem;font-size:.93rem}
+.info-box.blue{background:#EEF4FF;border-color:var(--accent3)}
+.info-box.green{background:#EDFFF3;border-color:var(--accent2)}
+.info-box.purple{background:#F5EEFF;border-color:var(--primary)}
+.info-box.orange{background:#FFF8EE;border-color:var(--accent1)}
+
+.tip-box{background:#FFFDE7;border:2px dashed var(--accent1);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.4rem 0}
+.tip-box h4{color:#E67E22;margin-bottom:.4rem;font-size:.95rem}
+.tip-box p,.tip-box li{font-size:.9rem;line-height:1.7}
+.tip-box ul{padding-left:1.3rem}
+.tip-box li{margin-bottom:.25rem}
+
+/* SEQUENCING */
+.seq-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1rem;margin-bottom:1.8rem}
+.seq-card{background:#fff;border-radius:var(--r);padding:1.1rem .9rem;text-align:center;box-shadow:var(--sh);border-top:5px solid var(--c,#6C63FF);transition:transform .2s}
+.seq-card:hover{transform:translateY(-3px)}
+.seq-num{display:inline-block;background:var(--c,#6C63FF);color:#fff;font-weight:800;font-size:.72rem;padding:.2rem .65rem;border-radius:50px;margin-bottom:.5rem}
+.seq-card h3{font-family:'Baloo 2',cursive;font-size:1.2rem;color:var(--c,#6C63FF);margin-bottom:.25rem}
+.seq-card p{font-size:.82rem;color:var(--muted);margin-bottom:.4rem}
+.example-box{background:var(--bg);border-radius:8px;padding:.45rem .65rem;font-size:.8rem;font-style:italic;margin-top:.4rem}
+
+.story-example{background:#fff;border-radius:var(--r);padding:1.4rem 1.8rem;box-shadow:var(--sh);margin-bottom:1.4rem}
+.story-example h3{font-family:'Baloo 2',cursive;font-size:1.1rem;color:var(--primary);margin-bottom:.7rem}
+.story-steps{padding-left:1.4rem;line-height:2.2;font-size:.93rem}
+.seq-word{background:linear-gradient(135deg,var(--primary),var(--accent3));color:#fff;padding:.12rem .55rem;border-radius:50px;font-weight:700;font-size:.88em}
+
+/* CONNECTIVES */
+.conn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.1rem;margin-bottom:1.8rem}
+.conn-card{background:#fff;border-radius:var(--r);padding:1.4rem;box-shadow:var(--sh);border-top:5px solid;transition:transform .2s}
+.conn-card:hover{transform:translateY(-3px)}
+.and-card{border-color:var(--accent2)}.but-card{border-color:var(--secondary)}.because-card{border-color:var(--accent3)}
+.conn-icon{font-size:1.8rem;margin-bottom:.4rem}
+.conn-card h3{font-family:'Baloo 2',cursive;font-size:1.4rem;margin-bottom:.15rem}
+.and-card h3{color:var(--accent2)}.but-card h3{color:var(--secondary)}.because-card h3{color:var(--accent3)}
+.conn-card p{font-size:.88rem;line-height:1.6;margin-bottom:.7rem}
+.example-item{padding:.3rem 0;font-size:.88rem;border-bottom:1px dashed #eee}
+.conn-highlight{font-weight:900;font-style:italic;color:var(--primary)}
+.comparison-table{background:#fff;border-radius:var(--r);padding:1.4rem;box-shadow:var(--sh);overflow-x:auto}
+.comparison-table h3{font-family:'Baloo 2',cursive;font-size:1.1rem;color:var(--primary);margin-bottom:.9rem}
+table{width:100%;border-collapse:collapse}
+th,td{padding:.7rem .9rem;text-align:left;font-size:.88rem;border-bottom:1px solid #F0F4FF}
+th{background:var(--primary);color:#fff;font-weight:700}
+tr:hover td{background:var(--bg)}
+.word-cell{font-weight:900;font-family:'Baloo 2',cursive;font-size:1rem;color:#fff;border-radius:6px;padding:.35rem .7rem}
+.and-bg{background:var(--accent2)}.but-bg{background:var(--secondary)}.because-bg{background:var(--accent3)}
+
+/* VERBS */
+.reg-irr-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.9rem}
+.reg-box,.irr-box{background:#fff;border-radius:12px;padding:1.1rem;border-left:5px solid}
+.reg-box{border-color:var(--accent2)}.irr-box{border-color:var(--secondary)}
+.reg-box h4,.irr-box h4{font-family:'Baloo 2',cursive;font-size:1rem;margin-bottom:.4rem}
+.reg-box h4{color:var(--accent2)}.irr-box h4{color:var(--secondary)}
+.reg-box ul,.irr-box ul{padding-left:1.1rem;margin-top:.4rem;font-size:.88rem;line-height:2}
+.verb-section{background:#fff;border-radius:var(--r);padding:1.4rem 1.8rem;box-shadow:var(--sh);margin-bottom:1.4rem}
+.verb-section h3{font-family:'Baloo 2',cursive;font-size:1.3rem;color:var(--primary);margin-bottom:.9rem}
+.verb-table-wrap{overflow-x:auto;margin-bottom:.9rem}
+.verb-table th{background:var(--primary)}
+.present{color:var(--accent2);font-weight:700}.past{color:var(--secondary);font-weight:700}
+.forms-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.9rem}
+.form-pill{background:var(--bg);border:2px solid var(--primary);border-radius:50px;padding:.35rem .9rem;font-size:.88rem;color:var(--primary)}
+
+/* 100 VERBS */
+.verb-filter-bar{display:flex;gap:.55rem;margin-bottom:.9rem;flex-wrap:wrap}
+.filter-btn{background:#fff;border:2px solid var(--primary);color:var(--primary);padding:.45rem 1.1rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s}
+.filter-btn.active,.filter-btn:hover{background:var(--primary);color:#fff}
+.verb100-search{margin-bottom:1.1rem}
+.verb100-search input{width:100%;max-width:380px;padding:.7rem 1.1rem;border:2px solid #dde;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s}
+.verb100-search input:focus{border-color:var(--primary)}
+.verb100-table-wrap{overflow-x:auto;box-shadow:var(--sh);border-radius:var(--r)}
+.verb100-table{width:100%;border-collapse:collapse;background:#fff;font-size:.8rem}
+.verb100-table th{background:var(--primary);color:#fff;font-size:.77rem;padding:.65rem;position:sticky;top:0}
+.verb100-table td{padding:.55rem .65rem;border-bottom:1px solid #F0F4FF;vertical-align:middle}
+.verb100-table tr:hover td{background:#F5F0FF}
+.v-base{font-weight:800;color:var(--primary)}.v-past{color:var(--secondary);font-weight:700}.v-pp{color:#9B59B6;font-weight:700}
+.badge-reg{background:#EDFFF3;color:var(--accent2);font-weight:700;padding:.18rem .55rem;border-radius:50px;font-size:.72rem;white-space:nowrap}
+.badge-irr{background:#FFF0F0;color:var(--secondary);font-weight:700;padding:.18rem .55rem;border-radius:50px;font-size:.72rem;white-space:nowrap}
+.btn-speak-mini{background:var(--accent3);color:#fff;border:none;padding:.28rem .55rem;border-radius:50px;font-size:.72rem;cursor:pointer;transition:opacity .2s}
+.btn-speak-mini:hover{opacity:.78}
+
+/* EXERCISES */
+.difficulty-tabs{display:flex;gap:.45rem;margin-bottom:1.4rem;flex-wrap:wrap}
+.diff-btn{background:#fff;border:2px solid #dde;padding:.55rem 1.3rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s}
+.diff-btn:hover{border-color:var(--primary);color:var(--primary)}
+.diff-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.difficulty-group{display:none}.difficulty-group.active{display:block}
+.exercise-card{background:#fff;border-radius:var(--r);padding:1.4rem 1.8rem;box-shadow:var(--sh);margin-bottom:1.4rem}
+.ex-header{display:flex;gap:.55rem;align-items:center;margin-bottom:.9rem;flex-wrap:wrap}
+.ex-badge{font-size:.78rem;font-weight:700;padding:.22rem .75rem;border-radius:50px}
+.ex-badge.easy{background:#EDFFF3;color:var(--accent2)}
+.ex-badge.medium{background:#FFF8EE;color:#E67E22}
+.ex-badge.hard{background:#FFF0F0;color:var(--secondary)}
+.ex-type{font-size:.78rem;background:var(--bg);padding:.22rem .75rem;border-radius:50px;color:var(--muted);font-weight:600}
+.exercise-card h3{font-family:'Baloo 2',cursive;font-size:1.05rem;color:var(--primary);margin-bottom:.9rem}
+
+/* MC */
+.mc-question{margin-bottom:1.1rem}
+.mc-question p{font-weight:600;margin-bottom:.45rem;font-size:.93rem}
+.mc-options{display:flex;gap:.45rem;flex-wrap:wrap}
+.mc-option{background:var(--bg);border:2px solid #dde;border-radius:50px;padding:.4rem 1rem;cursor:pointer;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:600;transition:all .2s}
+.mc-option:hover{border-color:var(--primary);background:#EEF4FF}
+.mc-option.selected{background:var(--primary);color:#fff;border-color:var(--primary)}
+.mc-option.correct{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.mc-option.wrong{background:var(--secondary);color:#fff;border-color:var(--secondary)}
+
+/* FILL */
+.fill-item{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-bottom:.75rem;font-size:.92rem;line-height:2}
+.fill-input{border:2px solid #BBC;border-radius:8px;padding:.28rem .65rem;font-family:'Nunito',sans-serif;font-size:.9rem;width:120px;outline:none;transition:border-color .2s}
+.fill-input:focus{border-color:var(--primary)}
+.fill-input.correct{border-color:var(--accent2);background:#EDFFF3}
+.fill-input.wrong{border-color:var(--secondary);background:#FFF0F0}
+
+/* MATCHING */
+.matching-exercise{display:flex;gap:1.8rem;flex-wrap:wrap}
+.matching-col{flex:1;min-width:130px}
+.matching-col h5{font-size:.77rem;color:var(--muted);margin-bottom:.55rem;text-transform:uppercase;letter-spacing:.5px}
+.match-item{background:var(--bg);border:2px solid #dde;border-radius:10px;padding:.55rem .9rem;margin-bottom:.55rem;cursor:pointer;font-weight:600;font-size:.88rem;transition:all .2s;user-select:none}
+.match-item:hover{border-color:var(--primary);background:#EEF4FF}
+.match-item.selected{border-color:var(--primary);background:var(--primary);color:#fff}
+.match-item.matched{border-color:var(--accent2);background:#EDFFF3;cursor:default}
+.match-item.wrong-match{border-color:var(--secondary);background:#FFF0F0}
+
+/* TF */
+.tf-item{margin-bottom:.9rem}
+.tf-item p{font-size:.92rem;margin-bottom:.38rem}
+.tf-buttons{display:flex;gap:.45rem}
+.tf-btn{background:var(--bg);border:2px solid #dde;border-radius:50px;padding:.38rem 1.1rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;cursor:pointer;transition:all .2s}
+.tf-btn:hover{border-color:var(--primary);color:var(--primary)}
+.tf-btn.selected{background:var(--primary);color:#fff;border-color:var(--primary)}
+.tf-btn.correct{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.tf-btn.wrong{background:var(--secondary);color:#fff;border-color:var(--secondary)}
+
+/* ORDERING */
+.ordering-exercise{display:flex;flex-direction:column;gap:.55rem}
+.order-item{background:var(--bg);border:2px solid #dde;border-radius:10px;padding:.65rem 1.1rem;display:flex;align-items:center;gap:.7rem;cursor:grab;font-size:.88rem;font-weight:600;transition:all .2s;user-select:none}
+.order-item:hover{border-color:var(--primary);background:#EEF4FF}
+.order-item.dragging{opacity:.45;border-style:dashed}
+.order-num{width:26px;height:26px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;flex-shrink:0}
+
+/* WRITING */
+.writing-area{width:100%;min-height:130px;border:2px solid #dde;border-radius:12px;padding:.9rem;font-family:'Nunito',sans-serif;font-size:.92rem;resize:vertical;outline:none;transition:border-color .2s}
+.writing-area:focus{border-color:var(--primary)}
+.instruction{font-size:.88rem;color:var(--muted);font-style:italic;margin-bottom:.75rem}
+
+/* BUTTONS */
+.btn-check{background:var(--accent2);color:#fff;border:none;padding:.65rem 1.7rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;cursor:pointer;margin-top:.9rem;transition:all .2s;box-shadow:0 4px 12px rgba(107,203,119,.35)}
+.btn-check:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(107,203,119,.45)}
+.result-area{margin-top:.9rem;padding:.75rem 1.1rem;border-radius:10px;font-weight:700;font-size:.92rem;display:none}
+.result-area.show{display:block}
+.result-area.perfect{background:#EDFFF3;color:#27AE60;border:2px solid var(--accent2)}
+.result-area.partial{background:#FFF8EE;color:#E67E22;border:2px solid var(--accent1)}
+.result-area.poor{background:#FFF0F0;color:var(--secondary);border:2px solid var(--secondary)}
+
+.btn-listen{background:linear-gradient(135deg,var(--accent3),var(--primary));color:#fff;border:none;padding:.6rem 1.3rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 12px rgba(77,150,255,.35)}
+.btn-listen.big{padding:.8rem 1.8rem;font-size:.95rem}
+.btn-listen.small{padding:.38rem .9rem;font-size:.78rem}
+.btn-listen:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(77,150,255,.45)}
+.btn-reveal{background:var(--bg);border:2px solid var(--accent3);color:var(--accent3);padding:.6rem 1.3rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-reveal:hover{background:var(--accent3);color:#fff}
+
+/* READING */
+.reading-level{display:none}.reading-level.active{display:block}
+.reading-card{background:#fff;border-radius:var(--r);padding:1.8rem;box-shadow:var(--sh);margin-bottom:1.8rem}
+.reading-badge{display:inline-block;padding:.28rem .9rem;border-radius:50px;font-weight:700;font-size:.78rem;margin-bottom:.75rem}
+.reading-badge.easy{background:#EDFFF3;color:var(--accent2)}
+.reading-badge.medium{background:#FFF8EE;color:#E67E22}
+.reading-badge.hard{background:#FFF0F0;color:var(--secondary)}
+.reading-card h3{font-family:'Baloo 2',cursive;font-size:1.3rem;color:var(--primary);margin-bottom:.9rem}
+.reading-text{background:#FAFBFF;border-radius:12px;padding:1.1rem 1.4rem;line-height:2;font-size:.92rem;margin:1rem 0;border-left:4px solid var(--primary)}
+.reading-questions h4,.vocab-section h4,.listen-questions h4,.fill-after-listen h4{font-family:'Baloo 2',cursive;font-size:1.05rem;color:var(--primary);margin:1.1rem 0 .65rem}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:.55rem;margin-top:.45rem}
+.vocab-card{background:var(--bg);border-radius:10px;padding:.45rem .75rem;font-size:.82rem;border-left:3px solid var(--primary)}
+
+/* LISTENING */
+.listen-card{background:#fff;border-radius:var(--r);padding:1.4rem 1.8rem;box-shadow:var(--sh);margin-bottom:1.4rem;border-top:5px solid var(--accent3)}
+.listen-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem;flex-wrap:wrap;gap:.45rem}
+.listen-badge{background:var(--accent3);color:#fff;padding:.28rem .9rem;border-radius:50px;font-weight:700;font-size:.82rem}
+.listen-controls{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.9rem}
+.listen-text{background:#F0F8FF;border:2px dashed var(--accent3);border-radius:12px;padding:1.1rem;line-height:2;font-size:.92rem;margin-bottom:.9rem}
+.listen-text.hidden{display:none}
+.mini-reading{background:#FAFBFF;border-left:4px solid var(--accent3);border-radius:12px;padding:1.1rem;margin-bottom:.9rem;line-height:2;font-size:.92rem}
+
+/* EXTRA */
+.extra-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.1rem;margin:1.4rem 0}
+.extra-card{background:#fff;border-radius:var(--r);padding:1.4rem 1.1rem;text-align:center;box-shadow:var(--sh);text-decoration:none;color:var(--text);transition:all .25s;border:2px solid transparent;display:block}
+.extra-card:hover{transform:translateY(-5px);box-shadow:var(--sh2);border-color:var(--primary)}
+.extra-icon{font-size:2.2rem;margin-bottom:.65rem}
+.extra-card h3{font-family:'Baloo 2',cursive;font-size:1.1rem;color:var(--primary);margin-bottom:.28rem}
+.extra-card p{font-size:.82rem;color:var(--muted);margin-bottom:.65rem}
+.extra-badge{background:var(--bg);color:var(--es);font-size:.72rem;font-weight:700;padding:.18rem .65rem;border-radius:50px;display:inline-block;margin-bottom:.75rem}
+.btn-goto{background:linear-gradient(135deg,var(--primary),var(--accent3));color:#fff;padding:.55rem 1.4rem;border-radius:50px;font-weight:800;font-size:.9rem;margin-top:.45rem}
+
+/* FOOTER */
+.site-footer{background:var(--primary);color:#fff;text-align:center;padding:1.4rem;margin-top:3rem}
+.site-footer p{line-height:1.8;font-size:.9rem}
+.site-footer .es-note{color:rgba(255,255,255,.75)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero{flex-direction:column;text-align:center;padding:1.8rem 1.3rem}
+  .hero-img{font-size:2.8rem}
+  .hero-text h2{font-size:1.5rem}
+  .hamburger{display:block}
+  .main-nav{display:none;flex-direction:column;align-items:stretch;top:62px}
+  .main-nav.open{display:flex}
+  .nav-btn{border-radius:12px;text-align:left}
+  .reg-irr-grid,.conn-grid{grid-template-columns:1fr}
+  .matching-exercise{flex-direction:column}
+  .section-title{font-size:1.4rem}
+}
+@media(max-width:480px){
+  .topics-grid{grid-template-columns:1fr 1fr}
+  .extra-grid{grid-template-columns:1fr 1fr}
+  .exercise-card,.reading-card{padding:1rem 1.1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">🚀</span>
+      <div>
+        <h1>English Adventure</h1>
+        <p>Grade 4 – Learning English is Fun! / ¡Aprender inglés es divertido!</p>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="main-nav" id="mainNav">
+  <button class="nav-btn active" data-section="home">🏠 Home</button>
+  <button class="nav-btn" data-section="sequencing">📋 Sequencing</button>
+  <button class="nav-btn" data-section="connectives">🔗 Connectives</button>
+  <button class="nav-btn" data-section="verbs">📚 Verbs</button>
+  <button class="nav-btn" data-section="verb100">💯 100 Verbs</button>
+  <button class="nav-btn" data-section="exercises">✏️ Exercises</button>
+  <button class="nav-btn" data-section="reading">📖 Reading</button>
+  <button class="nav-btn" data-section="listening">🎧 Listening</button>
+  <button class="nav-btn" data-section="extra">🌐 Extra</button>
+</nav>
+
+<main class="main-content">
+
+<!-- ===== HOME ===== -->
+<section id="home" class="section active">
+  <div class="hero">
+    <div class="hero-text">
+      <h2>Welcome, Language Explorer! 🌟</h2>
+      <p class="hero-sub">¡Bienvenido, explorador del lenguaje!</p>
+      <p>Get ready to learn English in the most fun way! Learn about <strong>sequencing words</strong>, <strong>connectives</strong>, <strong>irregular verbs</strong>, and much more!</p>
+      <p class="es-note">Prepárate para aprender inglés. En esta aventura aprenderás sobre <strong>palabras de secuencia</strong>, <strong>conectivos</strong>, <strong>verbos irregulares</strong> y ¡mucho más!</p>
+      <button class="btn-start" onclick="showSection('sequencing')">Start Learning! 🚀</button>
+    </div>
+    <div class="hero-img">🎓📚✨</div>
+  </div>
+  <div class="topics-grid">
+    <div class="topic-card" onclick="showSection('sequencing')">
+      <div class="topic-icon">📋</div><h3>Sequencing Words</h3>
+      <p>First, Next, Then, After that, Finally</p><span class="es-note">Palabras de secuencia</span>
+    </div>
+    <div class="topic-card" onclick="showSection('connectives')">
+      <div class="topic-icon">🔗</div><h3>Connectives</h3>
+      <p>and, but, because</p><span class="es-note">Conectivos</span>
+    </div>
+    <div class="topic-card" onclick="showSection('verbs')">
+      <div class="topic-icon">📚</div><h3>Irregular Verbs</h3>
+      <p>be, have</p><span class="es-note">Verbos irregulares</span>
+    </div>
+    <div class="topic-card" onclick="showSection('verb100')">
+      <div class="topic-icon">💯</div><h3>100 Verbs</h3>
+      <p>Most used English verbs</p><span class="es-note">Los 100 verbos más usados</span>
+    </div>
+    <div class="topic-card" onclick="showSection('exercises')">
+      <div class="topic-icon">✏️</div><h3>Exercises</h3>
+      <p>Practice makes perfect!</p><span class="es-note">¡La práctica hace al maestro!</span>
+    </div>
+    <div class="topic-card" onclick="showSection('reading')">
+      <div class="topic-icon">📖</div><h3>Reading</h3>
+      <p>Fun stories to read</p><span class="es-note">Historias divertidas para leer</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEQUENCING ===== -->
+<section id="sequencing" class="section">
+  <h2 class="section-title">📋 Sequencing Words <span class="es-note">Palabras de Secuencia</span></h2>
+  <div class="info-box blue">
+    <h3>What are sequencing words? / ¿Qué son las palabras de secuencia?</h3>
+    <p>Sequencing words help us <strong>tell the order</strong> of events — like steps in a recipe or a story.</p>
+    <p class="es-note">Las palabras de secuencia nos ayudan a contar el <strong>orden</strong> de los eventos — como pasos en una receta o una historia.</p>
+  </div>
+  <div class="seq-cards">
+    <div class="seq-card" style="--c:#FF6B6B"><div class="seq-num">1st</div><h3>FIRST</h3><p class="es-note">Primero</p><p>Use <em>First</em> to start.</p><div class="example-box">🌟 First, wash your hands.</div></div>
+    <div class="seq-card" style="--c:#FF9F43"><div class="seq-num">2nd</div><h3>NEXT</h3><p class="es-note">Después/Luego</p><p>Use <em>Next</em> for step 2.</p><div class="example-box">🌟 Next, open your book.</div></div>
+    <div class="seq-card" style="--c:#48DBFB"><div class="seq-num">3rd</div><h3>THEN</h3><p class="es-note">Entonces/Luego</p><p>Use <em>Then</em> to continue.</p><div class="example-box">🌟 Then, read the page.</div></div>
+    <div class="seq-card" style="--c:#1DD1A1"><div class="seq-num">4th</div><h3>AFTER THAT</h3><p class="es-note">Después de eso</p><p>Use <em>After that</em> for a later step.</p><div class="example-box">🌟 After that, answer the questions.</div></div>
+    <div class="seq-card" style="--c:#A29BFE"><div class="seq-num">Last</div><h3>FINALLY</h3><p class="es-note">Finalmente</p><p>Use <em>Finally</em> to end.</p><div class="example-box">🌟 Finally, close your book.</div></div>
+  </div>
+  <div class="story-example">
+    <h3>📖 Example: How to make a sandwich / Cómo hacer un sándwich</h3>
+    <ol class="story-steps">
+      <li><span class="seq-word">First</span>, get the bread.</li>
+      <li><span class="seq-word">Next</span>, put butter on the bread.</li>
+      <li><span class="seq-word">Then</span>, add cheese and ham.</li>
+      <li><span class="seq-word">After that</span>, put the other slice on top.</li>
+      <li><span class="seq-word">Finally</span>, enjoy your sandwich!</li>
+    </ol>
+    <br/>
+    <button class="btn-listen" onclick="speak('First, get the bread. Next, put butter on the bread. Then, add cheese and ham. After that, put the other slice of bread on top. Finally, enjoy your sandwich!')">🔊 Listen / Escuchar</button>
+  </div>
+  <div class="tip-box">
+    <h4>💡 Remember! / ¡Recuerda!</h4>
+    <p>Always use a <strong>comma (,)</strong> after sequencing words at the beginning of a sentence!</p>
+    <p class="es-note">¡Siempre usa una <strong>coma (,)</strong> después de estas palabras al inicio de la oración!</p>
+    <p>Example: <em>First<strong>,</strong> I wake up early.</em></p>
+  </div>
+</section>
+
+<!-- ===== CONNECTIVES ===== -->
+<section id="connectives" class="section">
+  <h2 class="section-title">🔗 Connectives <span class="es-note">Conectivos</span></h2>
+  <div class="info-box green">
+    <h3>What are connectives? / ¿Qué son los conectivos?</h3>
+    <p>Connectives <strong>join</strong> two ideas or sentences together. They make our writing flow better!</p>
+    <p class="es-note">Los conectivos <strong>unen</strong> dos ideas u oraciones. ¡Hacen que nuestra escritura fluya mejor!</p>
+  </div>
+  <div class="conn-grid">
+    <div class="conn-card and-card">
+      <div class="conn-icon">➕</div><h3>AND</h3><p class="es-note">Y</p>
+      <p>Use <strong>and</strong> to <em>add</em> information. / Úsalo para <em>agregar</em> información.</p>
+      <div class="example-item">I like cats <span class="conn-highlight">and</span> dogs.</div>
+      <div class="example-item es-note">Me gustan los gatos <span class="conn-highlight">y</span> los perros.</div>
+      <div class="example-item">She sings <span class="conn-highlight">and</span> dances.</div>
+      <div class="example-item es-note">Ella canta <span class="conn-highlight">y</span> baila.</div>
+      <br/><button class="btn-listen small" onclick="speak('I like cats and dogs. She sings and dances.')">🔊 Listen</button>
+    </div>
+    <div class="conn-card but-card">
+      <div class="conn-icon">↔️</div><h3>BUT</h3><p class="es-note">Pero</p>
+      <p>Use <strong>but</strong> to show a <em>contrast</em>. / Úsalo para mostrar un <em>contraste</em>.</p>
+      <div class="example-item">I like pizza, <span class="conn-highlight">but</span> I don't like pasta.</div>
+      <div class="example-item es-note">Me gusta la pizza, <span class="conn-highlight">pero</span> no me gusta la pasta.</div>
+      <div class="example-item">He is tall, <span class="conn-highlight">but</span> his brother is short.</div>
+      <div class="example-item es-note">Él es alto, <span class="conn-highlight">pero</span> su hermano es bajo.</div>
+      <br/><button class="btn-listen small" onclick="speak('I like pizza, but I do not like pasta. He is tall, but his brother is short.')">🔊 Listen</button>
+    </div>
+    <div class="conn-card because-card">
+      <div class="conn-icon">❓</div><h3>BECAUSE</h3><p class="es-note">Porque</p>
+      <p>Use <strong>because</strong> to give a <em>reason</em>. / Úsalo para dar una <em>razón</em>.</p>
+      <div class="example-item">I study hard <span class="conn-highlight">because</span> I want good grades.</div>
+      <div class="example-item es-note">Estudio mucho <span class="conn-highlight">porque</span> quiero buenas notas.</div>
+      <div class="example-item">She is happy <span class="conn-highlight">because</span> it's her birthday.</div>
+      <div class="example-item es-note">Ella está feliz <span class="conn-highlight">porque</span> es su cumpleaños.</div>
+      <br/><button class="btn-listen small" onclick="speak('I study hard because I want good grades. She is happy because it is her birthday.')">🔊 Listen</button>
+    </div>
+  </div>
+  <div class="comparison-table">
+    <h3>Quick Reference / Referencia Rápida</h3>
+    <table>
+      <thead><tr><th>Word</th><th>Español</th><th>Function</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><span class="word-cell and-bg">AND</span></td><td>Y</td><td>Adds information</td><td>I read and write every day.</td></tr>
+        <tr><td><span class="word-cell but-bg">BUT</span></td><td>Pero</td><td>Shows contrast</td><td>I like sports, but I hate running.</td></tr>
+        <tr><td><span class="word-cell because-bg">BECAUSE</span></td><td>Porque</td><td>Gives a reason</td><td>I smile because I am happy.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== VERBS ===== -->
+<section id="verbs" class="section">
+  <h2 class="section-title">📚 Irregular Verbs: BE &amp; HAVE <span class="es-note">Verbos Irregulares</span></h2>
+  <div class="info-box purple">
+    <h3>Regular vs. Irregular Verbs</h3>
+    <div class="reg-irr-grid">
+      <div class="reg-box"><h4>✅ Regular Verbs</h4><p>Add <strong>-ed</strong> to make past tense. / Agrega <strong>-ed</strong> para el pasado.</p><ul><li>play → play<strong>ed</strong></li><li>walk → walk<strong>ed</strong></li><li>talk → talk<strong>ed</strong></li></ul></div>
+      <div class="irr-box"><h4>⚡ Irregular Verbs</h4><p>They <strong>change completely</strong> in the past! / ¡Cambian completamente!</p><ul><li>go → went</li><li>see → saw</li><li>be → was/were</li></ul></div>
+    </div>
+  </div>
+  <div class="verb-section">
+    <h3>The verb "BE" – Ser / Estar</h3>
+    <div class="verb-table-wrap">
+      <table class="verb-table">
+        <thead><tr><th>Person</th><th>Present</th><th>Past</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>I</td><td class="present">am</td><td class="past">was</td><td>I <em>am</em> happy. / I <em>was</em> happy yesterday.</td></tr>
+          <tr><td>You</td><td class="present">are</td><td class="past">were</td><td>You <em>are</em> kind. / You <em>were</em> kind.</td></tr>
+          <tr><td>He/She/It</td><td class="present">is</td><td class="past">was</td><td>She <em>is</em> smart. / She <em>was</em> smart.</td></tr>
+          <tr><td>We</td><td class="present">are</td><td class="past">were</td><td>We <em>are</em> friends. / We <em>were</em> friends.</td></tr>
+          <tr><td>They</td><td class="present">are</td><td class="past">were</td><td>They <em>are</em> here. / They <em>were</em> here.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="forms-row"><div class="form-pill">Base: <strong>be</strong></div><div class="form-pill">Past: <strong>was / were</strong></div><div class="form-pill">Past Participle: <strong>been</strong></div></div>
+    <button class="btn-listen" onclick="speak('I am happy. You are kind. She is smart. We are friends. They are here.')">🔊 Listen to Examples</button>
+  </div>
+  <div class="verb-section">
+    <h3>The verb "HAVE" – Tener</h3>
+    <div class="verb-table-wrap">
+      <table class="verb-table">
+        <thead><tr><th>Person</th><th>Present</th><th>Past</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>I</td><td class="present">have</td><td class="past">had</td><td>I <em>have</em> a dog. / I <em>had</em> a dog.</td></tr>
+          <tr><td>You</td><td class="present">have</td><td class="past">had</td><td>You <em>have</em> a book. / You <em>had</em> a book.</td></tr>
+          <tr><td>He/She/It</td><td class="present">has</td><td class="past">had</td><td>He <em>has</em> a bike. / He <em>had</em> a bike.</td></tr>
+          <tr><td>We</td><td class="present">have</td><td class="past">had</td><td>We <em>have</em> fun. / We <em>had</em> fun.</td></tr>
+          <tr><td>They</td><td class="present">have</td><td class="past">had</td><td>They <em>have</em> cats. / They <em>had</em> cats.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="forms-row"><div class="form-pill">Base: <strong>have</strong></div><div class="form-pill">Past: <strong>had</strong></div><div class="form-pill">Past Participle: <strong>had</strong></div></div>
+    <button class="btn-listen" onclick="speak('I have a dog. He has a bike. They have cats.')">🔊 Listen to Examples</button>
+  </div>
+</section>
+
+<!-- ===== 100 VERBS ===== -->
+<section id="verb100" class="section">
+  <h2 class="section-title">💯 100 Most Used English Verbs <span class="es-note">Los 100 Verbos más Usados</span></h2>
+  <div class="verb-filter-bar">
+    <button class="filter-btn active" onclick="filterVerbs('all',this)">All / Todos</button>
+    <button class="filter-btn" onclick="filterVerbs('regular',this)">Regular ✅</button>
+    <button class="filter-btn" onclick="filterVerbs('irregular',this)">Irregular ⚡</button>
+  </div>
+  <div class="verb100-search"><input type="text" id="verbSearch" placeholder="🔍 Search a verb / Busca un verbo..." oninput="searchVerbs(this.value)"/></div>
+  <div class="verb100-table-wrap">
+    <table class="verb100-table" id="verb100Table">
+      <thead><tr><th>#</th><th>Verb</th><th>Spanish</th><th>Base</th><th>Past</th><th>Past Participle</th><th>Type</th><th>Example</th><th>🔊</th></tr></thead>
+      <tbody id="verbTableBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== EXERCISES ===== -->
+<section id="exercises" class="section">
+  <h2 class="section-title">✏️ Exercises <span class="es-note">Ejercicios</span></h2>
+  <div class="difficulty-tabs">
+    <button class="diff-btn active" onclick="showDifficulty('easy',this)">🟢 Easy</button>
+    <button class="diff-btn" onclick="showDifficulty('medium',this)">🟡 Medium</button>
+    <button class="diff-btn" onclick="showDifficulty('hard',this)">🔴 Hard</button>
+  </div>
+
+  <!-- EASY -->
+  <div id="diff-easy" class="difficulty-group active">
+    <div class="exercise-card">
+      <div class="ex-header"><span class="ex-badge easy">🟢 Easy</span><span class="ex-type">Multiple Choice</span></div>
+      <h3>1. Choose the correct sequencing word / Elige la palabra correcta</h3>
+      <div id="mc-seq" class="mc-exercise"></div>
+      <button class="btn-check" onclick="checkMC('mc-seq','mc-seq-result')">✅ Check / Revisar</button>
+      <div id="mc-seq-result" class="result-area"></div>
+    </div>
+    <div class="exercise-card">
+      <div class="ex-header"><span class="ex-badge easy">🟢 Easy</span><span class="ex-type">Fill in the Blanks</span></div>
+      <h3>2. Complete with AND, BUT, or BECAUSE</h3>
+      <div id="fill-conn-easy" class="fill-exercise"></div>
+      <button class="btn-check" onclick="checkFill('fill-conn-easy','fill-conn-easy-result',fillConnEasyData)">✅ Check / Revisar</button>
+      <div id="fill-conn-easy-result" class="result-area"></div>
+    </div>
+    <div class="exercise-card">
+      <div class="ex-header"><span class="ex-badge easy">🟢 Easy</span><span class="ex-type">Matching</span></div>
+      <h3>3. Match the sequencing word with its meaning / Une la palabra con su significado</h3>
+      <div id="matching-easy" class="matching-exercise"></div>
+      <button class="btn-check" onclick="checkMatching()">✅ Check / Revisar</button>
+      <div id="matching-easy-result" class="result-area"></div>
+    </div>
+    <div class="exercise-card">
+      <div class="ex-header"><span class="ex-badge easy">🟢 Easy</span><span class="ex-type">True or False</span></div>
+      <h3>4. True or False? / ¿Verdadero o Falso?</h3>
+      <div id="tf-exercise" class="tf-exercise"></div>
+      <button class="btn-check" onclick="checkTF()">✅ Check / Revisar</button>
+      <div id="tf-result" class="result-area"></div>
+    </div>
+  </div>
+
+  <!-- MEDIUM -->
+  <div id="diff-medium" class="difficulty-group">
+    <div class="exercise-card">
+      <div class="ex-header"><span class="ex-badge medium">🟡 Medium</span><span class="ex-type">Sentence Ordering</span></div>
+      <h3>5. Put the sentences in the correct order / Ordena las oraciones</h3>
+      <p class="instruction">Drag the steps into the correct order! / ¡Arrastra los pasos en el orden correcto!</p>
+      <div id="ordering-exercise" class="ordering-exercise"></div>
+      <button class="btn-check" onclick="checkOrdering()">✅ Check / Revisar</button>
+      <div id="ordering-result" class="result-area"></div>
+    </div>
+    <div class="exercise-card">
+      <div class="ex-header"><span class="ex-badge medium">🟡 Medium</span><span class="ex-type">Fill in the Blanks</span></div>
+      <h3>6. Complete with the correct form of BE</h3>
+      <div id="fill-be" class="fill-exercise"></div>
+      <button class="btn-check" onclick="checkFill('fill-be','fill-be-result',fillBEData)">✅ Check / Revisar</button>
+      <div id="fill-be-result" class="result-area"></div>
+    </div>
+    <div class="exercise-card">
+      <div class="ex-header"><span class="ex-badge medium">🟡 Medium</span><span class="ex-type">Fill in the Blanks</span></div>
+      <h3>7. Complete with the correct form of HAVE</h3>
+      <div id="fill-have" class="fill-exercise"></div>
+      <button class="btn-check" onclick="checkFill('fill-have','fill-have-result',fillHaveData)">✅ Check / Revisar</button>
+      <div id="fill-have-result" class="result-area"></div>
+    </div>
+    <div class="exercise-card">
+      <div class="ex-header"><span class="ex-badge medium">🟡 Medium</span><span class="ex-type">Reading Comprehension</span></div>
+      <h3>8. Read and answer / Lee y responde</h3>
+      <div class="mini-reading">
+        <button class="btn-listen small" onclick="speak('My name is Tom. I have a cat named Luna. First, I feed her in the morning. Then, I play with her after school. Finally, I give her a hug before bed. Luna is happy because she has a loving owner.')">🔊 Listen</button>
+        <p>My name is Tom. I <strong>have</strong> a cat named Luna. <em>First</em>, I feed her in the morning. <em>Then</em>, I play with her after school. <em>Finally</em>, I give her a hug before bed. Luna <strong>is</strong> happy <em>because</em> she has a loving owner.</p>
+      </div>
+      <div id="comp-medium" class="mc-exercise"></div>
+      <button class="btn-check" onclick="checkMC('comp-medium','comp-medium-result')">✅ Check / Revisar</button>
+      <div id="comp-medium-result" class="result-area"></div>
+    </div>
+  </div>
+
+  <!-- HARD -->
+  <div id="diff-hard" class="difficulty-group">
+    <div class="exercise-card">
+      <div class="ex-header"><span class="ex-badge hard">🔴 Hard</span><span class="ex-type">Creative Writing</span></div>
+      <h3>9. Write a short paragraph using sequencing words</h3>
+      <p class="instruction">Write 4-5 sentences about your morning routine using: First, Next, Then, After that, Finally. / Escribe 4-5 oraciones sobre tu rutina.</p>
+      <textarea id="writing-task" class="writing-area" placeholder="First, I wake up at 6 am. Next..."></textarea>
+      <button class="btn-check" onclick="checkWriting()">✅ Check / Revisar</button>
+      <div id="writing-result" class="result-area"></div>
+    </div>
+    <div class="exercise-card">
+      <div class="ex-header"><span class="ex-badge hard">🔴 Hard</span><span class="ex-type">Mixed Exercise</span></div>
+      <h3>10. Complete the story / Completa la historia</h3>
+      <div id="fill-mixed" class="fill-exercise"></div>
+      <button class="btn-check" onclick="checkFill('fill-mixed','fill-mixed-result',fillMixedData)">✅ Check / Revisar</button>
+      <div id="fill-mixed-result" class="result-area"></div>
+    </div>
+    <div class="exercise-card">
+      <div class="ex-header"><span class="ex-badge hard">🔴 Hard</span><span class="ex-type">Verb Challenge</span></div>
+      <h3>11. Regular or Irregular? / ¿Regular o Irregular?</h3>
+      <div id="reg-irr-exercise" class="mc-exercise"></div>
+      <button class="btn-check" onclick="checkMC('reg-irr-exercise','reg-irr-result')">✅ Check / Revisar</button>
+      <div id="reg-irr-result" class="result-area"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== READING ===== -->
+<section id="reading" class="section">
+  <h2 class="section-title">📖 Reading Activities <span class="es-note">Actividades de Lectura</span></h2>
+  <div class="difficulty-tabs">
+    <button class="diff-btn active" onclick="showReadingLevel('r-easy',this)">🟢 Easy</button>
+    <button class="diff-btn" onclick="showReadingLevel('r-medium',this)">🟡 Medium</button>
+    <button class="diff-btn" onclick="showReadingLevel('r-hard',this)">🔴 Hard</button>
+  </div>
+  <div id="r-easy" class="reading-level active">
+    <div class="reading-card">
+      <div class="reading-badge easy">🟢 Easy</div>
+      <h3>🐕 My Dog Max</h3>
+      <button class="btn-listen" onclick="speak('My name is Ana. I have a dog. His name is Max. Max is big and brown. First, I wake up and feed Max. Then, I take him for a walk. After that, I play with him in the yard. Finally, I give Max a bath. Max is happy because he loves to play. I love Max!')">🔊 Listen</button>
+      <div class="reading-text"><p>My name is Ana. I <strong>have</strong> a dog. His name is Max. Max <strong>is</strong> big and brown.</p><p><em>First</em>, I wake up <strong>and</strong> feed Max. <em>Then</em>, I take him for a walk. <em>After that</em>, I play with him in the yard. <em>Finally</em>, I give Max a bath.</p><p>Max <strong>is</strong> happy <em>because</em> he loves to play. I love Max!</p></div>
+      <div class="reading-questions"><h4>📝 Comprehension Questions:</h4><div id="rq-easy1" class="mc-exercise"></div><button class="btn-check" onclick="checkMC('rq-easy1','rq-easy1-result')">✅ Check</button><div id="rq-easy1-result" class="result-area"></div></div>
+      <div class="vocab-section"><h4>📖 Vocabulary:</h4><div class="vocab-grid"><div class="vocab-card"><strong>dog</strong> – perro</div><div class="vocab-card"><strong>big</strong> – grande</div><div class="vocab-card"><strong>walk</strong> – paseo</div><div class="vocab-card"><strong>yard</strong> – patio</div><div class="vocab-card"><strong>bath</strong> – baño</div><div class="vocab-card"><strong>happy</strong> – feliz</div></div></div>
+    </div>
+  </div>
+  <div id="r-medium" class="reading-level">
+    <div class="reading-card">
+      <div class="reading-badge medium">🟡 Medium</div>
+      <h3>🌱 The School Garden</h3>
+      <button class="btn-listen" onclick="speak('Our class has a garden at school. We are very excited! First, we prepared the soil and dug small holes. Next, we put seeds in the holes and covered them. Then, we watered the plants every day. After that, we watched small green plants grow. Finally, after many weeks, we had fresh vegetables! We were happy because our hard work paid off.')">🔊 Listen</button>
+      <div class="reading-text"><p>Our class <strong>has</strong> a garden at school. We <strong>are</strong> very excited!</p><p><em>First</em>, we prepared the soil <strong>and</strong> dug small holes. <em>Next</em>, we put seeds in the holes. <em>Then</em>, we watered the plants every day. <em>After that</em>, we watched plants grow. <em>Finally</em>, we <strong>had</strong> fresh vegetables!</p><p>We <strong>were</strong> happy <em>because</em> our hard work paid off. Our teacher said we <strong>are</strong> great gardeners!</p></div>
+      <div class="reading-questions"><h4>📝 Comprehension Questions:</h4><div id="rq-medium1" class="mc-exercise"></div><button class="btn-check" onclick="checkMC('rq-medium1','rq-medium1-result')">✅ Check</button><div id="rq-medium1-result" class="result-area"></div></div>
+      <div class="vocab-section"><h4>📖 Vocabulary:</h4><div class="vocab-grid"><div class="vocab-card"><strong>garden</strong> – jardín</div><div class="vocab-card"><strong>excited</strong> – emocionado</div><div class="vocab-card"><strong>soil</strong> – tierra</div><div class="vocab-card"><strong>seeds</strong> – semillas</div><div class="vocab-card"><strong>watered</strong> – regó</div><div class="vocab-card"><strong>vegetables</strong> – verduras</div></div></div>
+    </div>
+  </div>
+  <div id="r-hard" class="reading-level">
+    <div class="reading-card">
+      <div class="reading-badge hard">🔴 Hard</div>
+      <h3>🏔️ The Mountain Adventure</h3>
+      <button class="btn-listen" onclick="speak('Last summer, my family and I had an incredible adventure in the mountains. First, we packed our bags with food, water, and warm clothes because the weather could change quickly. Next, we drove for three hours to reach the trail. Then, we hiked through beautiful forests. After that, we reached the top and were amazed by the view. Finally, we had a picnic and took photos. My legs were tired but my heart was full because I experienced something wonderful!')">🔊 Listen</button>
+      <div class="reading-text"><p>Last summer, my family and I <strong>had</strong> an incredible adventure in the mountains. <em>First</em>, we packed our bags <em>because</em> the weather could change quickly.</p><p><em>Next</em>, we drove for three hours. <em>Then</em>, we hiked through beautiful forests. <em>After that</em>, we <strong>were</strong> amazed by the view.</p><p><em>Finally</em>, we <strong>had</strong> a picnic and took photos. My legs <strong>were</strong> tired <strong>but</strong> my heart <strong>was</strong> full. It <strong>was</strong> the best day of my life!</p></div>
+      <div class="reading-questions"><h4>📝 Comprehension Questions:</h4><div id="rq-hard1" class="mc-exercise"></div><button class="btn-check" onclick="checkMC('rq-hard1','rq-hard1-result')">✅ Check</button><div id="rq-hard1-result" class="result-area"></div></div>
+      <div class="vocab-section"><h4>📖 Vocabulary:</h4><div class="vocab-grid"><div class="vocab-card"><strong>incredible</strong> – increíble</div><div class="vocab-card"><strong>packed</strong> – empacó</div><div class="vocab-card"><strong>trail</strong> – sendero</div><div class="vocab-card"><strong>hike</strong> – caminata</div><div class="vocab-card"><strong>amazed</strong> – asombrado</div><div class="vocab-card"><strong>picnic</strong> – picnic</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LISTENING ===== -->
+<section id="listening" class="section">
+  <h2 class="section-title">🎧 Listening Activities <span class="es-note">Actividades de Escucha</span></h2>
+  <div class="info-box orange"><p>🔊 Click <strong>Listen</strong> to hear the text read aloud, then answer the questions! / Haz clic en <strong>Escuchar</strong> y luego responde.</p></div>
+
+  <div class="listen-card">
+    <div class="listen-header"><span class="listen-badge">🎧 Listening 1 – Easy</span><span>Daily Routine / Rutina diaria</span></div>
+    <div class="listen-controls">
+      <button class="btn-listen big" onclick="speak('Every morning I have a routine. First, I wake up at seven o clock. Next, I brush my teeth and wash my face. Then, I eat breakfast because I need energy. After that, I put on my school uniform. Finally, I say goodbye to my family and go to school. I am always happy because I love learning!')">🔊 Listen / Escuchar</button>
+      <button class="btn-reveal" onclick="toggleText('listen1-text')">👁️ Show/Hide Text</button>
+    </div>
+    <div id="listen1-text" class="listen-text hidden"><p>Every morning I have a routine. <em>First</em>, I wake up at seven o'clock. <em>Next</em>, I brush my teeth and wash my face. <em>Then</em>, I eat breakfast <em>because</em> I need energy. <em>After that</em>, I put on my school uniform. <em>Finally</em>, I say goodbye to my family and go to school. I am always happy <em>because</em> I love learning!</p></div>
+    <div class="listen-questions"><h4>📝 Questions:</h4><div id="lq1" class="mc-exercise"></div><button class="btn-check" onclick="checkMC('lq1','lq1-result')">✅ Check</button><div id="lq1-result" class="result-area"></div></div>
+    <div class="fill-after-listen"><h4>✏️ Fill in the blanks after listening:</h4><div id="fill-listen1" class="fill-exercise"></div><button class="btn-check" onclick="checkFill('fill-listen1','fill-listen1-result',fillListen1Data)">✅ Check</button><div id="fill-listen1-result" class="result-area"></div></div>
+  </div>
+
+  <div class="listen-card">
+    <div class="listen-header"><span class="listen-badge">🎧 Listening 2 – Medium</span><span>Cooking / Cocinar</span></div>
+    <div class="listen-controls">
+      <button class="btn-listen big" onclick="speak('Today we are going to make orange juice! First, get three oranges and wash them. Next, cut the oranges in half because we need to squeeze them. Then, squeeze each half over a bowl. After that, add a little sugar but not too much! Finally, pour the juice into a glass and enjoy your drink. Orange juice is healthy and delicious!')">🔊 Listen / Escuchar</button>
+      <button class="btn-reveal" onclick="toggleText('listen2-text')">👁️ Show/Hide Text</button>
+    </div>
+    <div id="listen2-text" class="listen-text hidden"><p>Today we are going to make orange juice! <em>First</em>, get three oranges and wash them. <em>Next</em>, cut the oranges in half <em>because</em> we need to squeeze them. <em>Then</em>, squeeze each half over a bowl. <em>After that</em>, add a little sugar <em>but</em> not too much! <em>Finally</em>, pour the juice into a glass and enjoy your drink.</p></div>
+    <div class="listen-questions"><h4>📝 Questions:</h4><div id="lq2" class="mc-exercise"></div><button class="btn-check" onclick="checkMC('lq2','lq2-result')">✅ Check</button><div id="lq2-result" class="result-area"></div></div>
+  </div>
+
+  <div class="listen-card">
+    <div class="listen-header"><span class="listen-badge">🎧 Listening 3 – Hard</span><span>A Special Day / Un día especial</span></div>
+    <div class="listen-controls">
+      <button class="btn-listen big" onclick="speak('Last Saturday was my birthday! First, I woke up and my family had decorated the house with balloons. Next, my mother made my favorite breakfast because she wanted to make me smile. Then, my friends arrived and we had fun playing games. After that, we had a big chocolate cake with candles. I made a wish and blew them all out! Finally, I opened my presents and I was amazed because I received the bicycle I had always wanted!')">🔊 Listen / Escuchar</button>
+      <button class="btn-reveal" onclick="toggleText('listen3-text')">👁️ Show/Hide Text</button>
+    </div>
+    <div id="listen3-text" class="listen-text hidden"><p>Last Saturday was my birthday! <em>First</em>, I woke up and my family <strong>had</strong> decorated the house with balloons. <em>Next</em>, my mother made breakfast <em>because</em> she wanted to make me smile. <em>Then</em>, my friends arrived and we <strong>had</strong> fun. <em>After that</em>, we <strong>had</strong> a big chocolate cake. <em>Finally</em>, I opened my presents and I <strong>was</strong> amazed because I received a bicycle!</p></div>
+    <div class="listen-questions"><h4>📝 Questions:</h4><div id="lq3" class="mc-exercise"></div><button class="btn-check" onclick="checkMC('lq3','lq3-result')">✅ Check</button><div id="lq3-result" class="result-area"></div></div>
+  </div>
+</section>
+
+<!-- ===== EXTRA ===== -->
+<section id="extra" class="section">
+  <h2 class="section-title">🌐 Extra Practice <span class="es-note">Práctica Extra</span></h2>
+  <div class="info-box blue"><p>Practice more with these amazing online worksheets! / ¡Practica más con estas increíbles hojas de trabajo en línea!</p></div>
+  <div class="extra-grid">
+    <a href="https://www.liveworksheets.com/worksheet/en/english-language/1614116" target="_blank" class="extra-card"><div class="extra-icon">📝</div><h3>Worksheet 1</h3><p>English Language Practice</p><span class="extra-badge">LiveWorksheets</span><div class="btn-goto">Go! →</div></a>
+    <a href="https://www.liveworksheets.com/worksheet/en/language-arts-grammar/8123415" target="_blank" class="extra-card"><div class="extra-icon">✏️</div><h3>Worksheet 2</h3><p>Language Arts &amp; Grammar</p><span class="extra-badge">LiveWorksheets</span><div class="btn-goto">Go! →</div></a>
+    <a href="https://www.liveworksheets.com/worksheet/en/english-second-language-esl/1196929" target="_blank" class="extra-card"><div class="extra-icon">🌍</div><h3>Worksheet 3</h3><p>ESL Practice Activity</p><span class="extra-badge">LiveWorksheets</span><div class="btn-goto">Go! →</div></a>
+    <a href="https://www.liveworksheets.com/worksheet/en/english-second-language-esl/1471015" target="_blank" class="extra-card"><div class="extra-icon">🎯</div><h3>Worksheet 4</h3><p>ESL Interactive Exercise</p><span class="extra-badge">LiveWorksheets</span><div class="btn-goto">Go! →</div></a>
+  </div>
+  <div class="tip-box"><h4>🌟 Study Tips / Consejos de Estudio</h4><ul><li>Practice English every day, even for 15 minutes! / ¡Practica inglés todos los días, aunque sean 15 minutos!</li><li>Read books and stories in English. / Lee libros e historias en inglés.</li><li>Listen to songs and cartoons in English. / Escucha canciones y caricaturas en inglés.</li><li>Write a short diary in English every day! / ¡Escribe un diario corto en inglés todos los días!</li></ul></div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <p>🚀 English Adventure – Grade 4 | Made with ❤️ for learning</p>
+  <p class="es-note">Hecho con ❤️ para aprender inglés</p>
+</footer>
+
+<script>
+'use strict';
+
+/* ---- NAVIGATION ---- */
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const btn=document.querySelector(`[data-section="${id}"]`);
+  if(btn)btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.nav-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{showSection(btn.dataset.section);document.getElementById('mainNav').classList.remove('open');});
+});
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('mainNav').classList.toggle('open'));
+
+/* ---- SPEECH ---- */
+function speak(text){
+  if(!window.speechSynthesis){alert('Your browser does not support speech.');return;}
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.88;u.pitch=1.05;
+  window.speechSynthesis.speak(u);
+}
+function toggleText(id){document.getElementById(id).classList.toggle('hidden');}
+
+/* ---- 100 VERBS DATA ---- */
+const verbs100=[
+  {base:'be',es:'ser/estar',past:'was/were',pp:'been',type:'irregular',ex:'I am a student.',exEs:'Soy estudiante.'},
+  {base:'have',es:'tener',past:'had',pp:'had',type:'irregular',ex:'She has a cat.',exEs:'Ella tiene un gato.'},
+  {base:'do',es:'hacer',past:'did',pp:'done',type:'irregular',ex:'I do my homework.',exEs:'Hago mi tarea.'},
+  {base:'say',es:'decir',past:'said',pp:'said',type:'irregular',ex:'He said hello.',exEs:'Él dijo hola.'},
+  {base:'go',es:'ir',past:'went',pp:'gone',type:'irregular',ex:'We go to school.',exEs:'Vamos a la escuela.'},
+  {base:'get',es:'obtener',past:'got',pp:'gotten',type:'irregular',ex:'I get a prize.',exEs:'Obtengo un premio.'},
+  {base:'make',es:'hacer/fabricar',past:'made',pp:'made',type:'irregular',ex:'She makes cookies.',exEs:'Ella hace galletas.'},
+  {base:'know',es:'saber/conocer',past:'knew',pp:'known',type:'irregular',ex:'I know the answer.',exEs:'Sé la respuesta.'},
+  {base:'think',es:'pensar',past:'thought',pp:'thought',type:'irregular',ex:'I think it is fun.',exEs:'Creo que es divertido.'},
+  {base:'take',es:'tomar/llevar',past:'took',pp:'taken',type:'irregular',ex:'Take your book.',exEs:'Toma tu libro.'},
+  {base:'see',es:'ver',past:'saw',pp:'seen',type:'irregular',ex:'I see a bird.',exEs:'Veo un pájaro.'},
+  {base:'come',es:'venir',past:'came',pp:'come',type:'irregular',ex:'Come here please.',exEs:'Ven aquí, por favor.'},
+  {base:'want',es:'querer',past:'wanted',pp:'wanted',type:'regular',ex:'I want ice cream.',exEs:'Quiero helado.'},
+  {base:'give',es:'dar',past:'gave',pp:'given',type:'irregular',ex:'Give me the ball.',exEs:'Dame la pelota.'},
+  {base:'find',es:'encontrar',past:'found',pp:'found',type:'irregular',ex:'I find my keys.',exEs:'Encuentro mis llaves.'},
+  {base:'tell',es:'decir/contar',past:'told',pp:'told',type:'irregular',ex:'Tell me a story.',exEs:'Cuéntame una historia.'},
+  {base:'work',es:'trabajar',past:'worked',pp:'worked',type:'regular',ex:'I work every day.',exEs:'Trabajo todos los días.'},
+  {base:'call',es:'llamar',past:'called',pp:'called',type:'regular',ex:'She calls her mom.',exEs:'Ella llama a su mamá.'},
+  {base:'try',es:'intentar',past:'tried',pp:'tried',type:'regular',ex:'Try again!',exEs:'¡Inténtalo de nuevo!'},
+  {base:'ask',es:'preguntar',past:'asked',pp:'asked',type:'regular',ex:'Ask the teacher.',exEs:'Pregunta al maestro.'},
+  {base:'need',es:'necesitar',past:'needed',pp:'needed',type:'regular',ex:'I need help.',exEs:'Necesito ayuda.'},
+  {base:'feel',es:'sentir',past:'felt',pp:'felt',type:'irregular',ex:'I feel happy.',exEs:'Me siento feliz.'},
+  {base:'become',es:'convertirse en',past:'became',pp:'become',type:'irregular',ex:'She became a teacher.',exEs:'Ella se convirtió en maestra.'},
+  {base:'leave',es:'salir/dejar',past:'left',pp:'left',type:'irregular',ex:'I leave at eight.',exEs:'Salgo a las ocho.'},
+  {base:'put',es:'poner',past:'put',pp:'put',type:'irregular',ex:'Put it on the desk.',exEs:'Ponlo en el escritorio.'},
+  {base:'keep',es:'guardar/mantener',past:'kept',pp:'kept',type:'irregular',ex:'Keep the change.',exEs:'Quédate el cambio.'},
+  {base:'let',es:'dejar/permitir',past:'let',pp:'let',type:'irregular',ex:'Let me help you.',exEs:'Déjame ayudarte.'},
+  {base:'begin',es:'comenzar',past:'began',pp:'begun',type:'irregular',ex:'Class begins now.',exEs:'La clase comienza ahora.'},
+  {base:'show',es:'mostrar',past:'showed',pp:'shown',type:'irregular',ex:'Show me your book.',exEs:'Muéstrame tu libro.'},
+  {base:'hear',es:'escuchar/oír',past:'heard',pp:'heard',type:'irregular',ex:'I hear music.',exEs:'Escucho música.'},
+  {base:'play',es:'jugar/tocar',past:'played',pp:'played',type:'regular',ex:'I play soccer.',exEs:'Juego fútbol.'},
+  {base:'run',es:'correr',past:'ran',pp:'run',type:'irregular',ex:'I run every morning.',exEs:'Corro cada mañana.'},
+  {base:'move',es:'mover',past:'moved',pp:'moved',type:'regular',ex:'Move the chair.',exEs:'Mueve la silla.'},
+  {base:'live',es:'vivir',past:'lived',pp:'lived',type:'regular',ex:'I live in Colombia.',exEs:'Vivo en Colombia.'},
+  {base:'walk',es:'caminar',past:'walked',pp:'walked',type:'regular',ex:'I walk to school.',exEs:'Camino a la escuela.'},
+  {base:'write',es:'escribir',past:'wrote',pp:'written',type:'irregular',ex:'Write your name.',exEs:'Escribe tu nombre.'},
+  {base:'read',es:'leer',past:'read',pp:'read',type:'irregular',ex:'Read the story.',exEs:'Lee la historia.'},
+  {base:'sit',es:'sentarse',past:'sat',pp:'sat',type:'irregular',ex:'Sit down please.',exEs:'Siéntate, por favor.'},
+  {base:'stand',es:'estar de pie',past:'stood',pp:'stood',type:'irregular',ex:'Stand up!',exEs:'¡Levántate!'},
+  {base:'bring',es:'traer',past:'brought',pp:'brought',type:'irregular',ex:'Bring your notebook.',exEs:'Trae tu cuaderno.'},
+  {base:'open',es:'abrir',past:'opened',pp:'opened',type:'regular',ex:'Open the window.',exEs:'Abre la ventana.'},
+  {base:'close',es:'cerrar',past:'closed',pp:'closed',type:'regular',ex:'Close the door.',exEs:'Cierra la puerta.'},
+  {base:'eat',es:'comer',past:'ate',pp:'eaten',type:'irregular',ex:'I eat vegetables.',exEs:'Como verduras.'},
+  {base:'drink',es:'beber',past:'drank',pp:'drunk',type:'irregular',ex:'Drink water!',exEs:'¡Bebe agua!'},
+  {base:'sleep',es:'dormir',past:'slept',pp:'slept',type:'irregular',ex:'I sleep at nine.',exEs:'Duermo a las nueve.'},
+  {base:'wake',es:'despertar',past:'woke',pp:'woken',type:'irregular',ex:'I wake up early.',exEs:'Me despierto temprano.'},
+  {base:'teach',es:'enseñar',past:'taught',pp:'taught',type:'irregular',ex:'She teaches math.',exEs:'Ella enseña matemáticas.'},
+  {base:'learn',es:'aprender',past:'learned',pp:'learned',type:'regular',ex:'I learn English.',exEs:'Aprendo inglés.'},
+  {base:'help',es:'ayudar',past:'helped',pp:'helped',type:'regular',ex:'Help your friend!',exEs:'¡Ayuda a tu amigo!'},
+  {base:'love',es:'amar',past:'loved',pp:'loved',type:'regular',ex:'I love my family.',exEs:'Amo a mi familia.'},
+  {base:'like',es:'gustar',past:'liked',pp:'liked',type:'regular',ex:'I like pizza.',exEs:'Me gusta la pizza.'},
+  {base:'start',es:'empezar',past:'started',pp:'started',type:'regular',ex:'Start your work!',exEs:'¡Empieza tu trabajo!'},
+  {base:'stop',es:'parar',past:'stopped',pp:'stopped',type:'regular',ex:'Stop running!',exEs:'¡Para de correr!'},
+  {base:'listen',es:'escuchar',past:'listened',pp:'listened',type:'regular',ex:'Listen carefully.',exEs:'Escucha con atención.'},
+  {base:'speak',es:'hablar',past:'spoke',pp:'spoken',type:'irregular',ex:'I speak English.',exEs:'Hablo inglés.'},
+  {base:'talk',es:'charlar',past:'talked',pp:'talked',type:'regular',ex:'We talk every day.',exEs:'Hablamos todos los días.'},
+  {base:'sing',es:'cantar',past:'sang',pp:'sung',type:'irregular',ex:'She sings well.',exEs:'Ella canta bien.'},
+  {base:'dance',es:'bailar',past:'danced',pp:'danced',type:'regular',ex:'We dance at parties.',exEs:'Bailamos en fiestas.'},
+  {base:'draw',es:'dibujar',past:'drew',pp:'drawn',type:'irregular',ex:'Draw a circle.',exEs:'Dibuja un círculo.'},
+  {base:'paint',es:'pintar',past:'painted',pp:'painted',type:'regular',ex:'I paint pictures.',exEs:'Pinto cuadros.'},
+  {base:'swim',es:'nadar',past:'swam',pp:'swum',type:'irregular',ex:'I swim in the pool.',exEs:'Nado en la piscina.'},
+  {base:'jump',es:'saltar',past:'jumped',pp:'jumped',type:'regular',ex:'Jump over the rope!',exEs:'¡Salta sobre la cuerda!'},
+  {base:'climb',es:'escalar',past:'climbed',pp:'climbed',type:'regular',ex:'Climb the tree!',exEs:'¡Trepa el árbol!'},
+  {base:'fly',es:'volar',past:'flew',pp:'flown',type:'irregular',ex:'Birds fly high.',exEs:'Los pájaros vuelan alto.'},
+  {base:'buy',es:'comprar',past:'bought',pp:'bought',type:'irregular',ex:'I buy bread.',exEs:'Compro pan.'},
+  {base:'sell',es:'vender',past:'sold',pp:'sold',type:'irregular',ex:'She sells flowers.',exEs:'Ella vende flores.'},
+  {base:'choose',es:'elegir',past:'chose',pp:'chosen',type:'irregular',ex:'Choose your book.',exEs:'Elige tu libro.'},
+  {base:'wear',es:'usar ropa',past:'wore',pp:'worn',type:'irregular',ex:'I wear a uniform.',exEs:'Uso uniforme.'},
+  {base:'send',es:'enviar',past:'sent',pp:'sent',type:'irregular',ex:'Send the letter.',exEs:'Envía la carta.'},
+  {base:'receive',es:'recibir',past:'received',pp:'received',type:'regular',ex:'I receive a gift.',exEs:'Recibo un regalo.'},
+  {base:'wait',es:'esperar',past:'waited',pp:'waited',type:'regular',ex:'Wait for me!',exEs:'¡Espérame!'},
+  {base:'watch',es:'ver/observar',past:'watched',pp:'watched',type:'regular',ex:'I watch TV.',exEs:'Veo televisión.'},
+  {base:'clean',es:'limpiar',past:'cleaned',pp:'cleaned',type:'regular',ex:'Clean your room!',exEs:'¡Limpia tu cuarto!'},
+  {base:'cook',es:'cocinar',past:'cooked',pp:'cooked',type:'regular',ex:'I cook dinner.',exEs:'Cocino la cena.'},
+  {base:'wash',es:'lavar',past:'washed',pp:'washed',type:'regular',ex:'Wash your hands!',exEs:'¡Lávate las manos!'},
+  {base:'cut',es:'cortar',past:'cut',pp:'cut',type:'irregular',ex:'Cut the paper.',exEs:'Corta el papel.'},
+  {base:'break',es:'romper',past:'broke',pp:'broken',type:'irregular',ex:'Do not break it!',exEs:'¡No lo rompas!'},
+  {base:'build',es:'construir',past:'built',pp:'built',type:'irregular',ex:'I build a tower.',exEs:'Construyo una torre.'},
+  {base:'grow',es:'crecer',past:'grew',pp:'grown',type:'irregular',ex:'Plants grow fast.',exEs:'Las plantas crecen rápido.'},
+  {base:'turn',es:'girar',past:'turned',pp:'turned',type:'regular',ex:'Turn the page.',exEs:'Voltea la página.'},
+  {base:'carry',es:'cargar',past:'carried',pp:'carried',type:'regular',ex:'Carry your bag!',exEs:'¡Carga tu bolsa!'},
+  {base:'drop',es:'soltar',past:'dropped',pp:'dropped',type:'regular',ex:'Do not drop it.',exEs:'No lo sueltes.'},
+  {base:'push',es:'empujar',past:'pushed',pp:'pushed',type:'regular',ex:'Push the door.',exEs:'Empuja la puerta.'},
+  {base:'pull',es:'jalar',past:'pulled',pp:'pulled',type:'regular',ex:'Pull the rope.',exEs:'Jala la cuerda.'},
+  {base:'throw',es:'lanzar',past:'threw',pp:'thrown',type:'irregular',ex:'Throw the ball.',exEs:'Lanza la pelota.'},
+  {base:'catch',es:'atrapar',past:'caught',pp:'caught',type:'irregular',ex:'Catch the ball!',exEs:'¡Atrapa la pelota!'},
+  {base:'win',es:'ganar',past:'won',pp:'won',type:'irregular',ex:'I want to win!',exEs:'¡Quiero ganar!'},
+  {base:'lose',es:'perder',past:'lost',pp:'lost',type:'irregular',ex:'Do not lose hope.',exEs:'No pierdas la esperanza.'},
+  {base:'study',es:'estudiar',past:'studied',pp:'studied',type:'regular',ex:'Study every day!',exEs:'¡Estudia todos los días!'},
+  {base:'remember',es:'recordar',past:'remembered',pp:'remembered',type:'regular',ex:'Remember to smile!',exEs:'¡Recuerda sonreír!'},
+  {base:'forget',es:'olvidar',past:'forgot',pp:'forgotten',type:'irregular',ex:'Do not forget!',exEs:'¡No olvides!'},
+  {base:'understand',es:'entender',past:'understood',pp:'understood',type:'irregular',ex:'I understand now.',exEs:'Ahora entiendo.'},
+  {base:'answer',es:'responder',past:'answered',pp:'answered',type:'regular',ex:'Answer the question.',exEs:'Responde la pregunta.'},
+  {base:'explain',es:'explicar',past:'explained',pp:'explained',type:'regular',ex:'Explain the rule.',exEs:'Explica la regla.'},
+  {base:'repeat',es:'repetir',past:'repeated',pp:'repeated',type:'regular',ex:'Repeat after me.',exEs:'Repite después de mí.'},
+  {base:'smile',es:'sonreír',past:'smiled',pp:'smiled',type:'regular',ex:'Smile at everyone!',exEs:'¡Sonríe a todos!'},
+  {base:'cry',es:'llorar',past:'cried',pp:'cried',type:'regular',ex:'Do not cry!',exEs:'¡No llores!'},
+  {base:'laugh',es:'reír',past:'laughed',pp:'laughed',type:'regular',ex:'I laugh a lot.',exEs:'Me río mucho.'},
+  {base:'hug',es:'abrazar',past:'hugged',pp:'hugged',type:'regular',ex:'Hug your parents!',exEs:'¡Abraza a tus padres!'},
+  {base:'share',es:'compartir',past:'shared',pp:'shared',type:'regular',ex:'Share your pencil.',exEs:'Comparte tu lápiz.'},
+  {base:'count',es:'contar',past:'counted',pp:'counted',type:'regular',ex:'Count to twenty.',exEs:'Cuenta hasta veinte.'},
+  {base:'color',es:'colorear',past:'colored',pp:'colored',type:'regular',ex:'Color the picture.',exEs:'Colorea el dibujo.'},
+  {base:'visit',es:'visitar',past:'visited',pp:'visited',type:'regular',ex:'Visit your grandma.',exEs:'Visita a tu abuela.'},
+  {base:'travel',es:'viajar',past:'traveled',pp:'traveled',type:'regular',ex:'I travel by bus.',exEs:'Viajo en autobús.'},
+];
+
+let currentFilter='all';
+function renderVerbTable(list){
+  const tbody=document.getElementById('verbTableBody');
+  tbody.innerHTML='';
+  list.forEach((v,i)=>{
+    const badge=v.type==='regular'
+      ?'<span class="badge-reg">✅ Regular</span>'
+      :'<span class="badge-irr">⚡ Irregular</span>';
+    const exSafe=v.ex.replace(/'/g,"&apos;");
+    tbody.innerHTML+=`<tr data-type="${v.type}">
+      <td>${i+1}</td><td class="v-base">${v.base}</td>
+      <td class="es-note">${v.es}</td><td class="v-base">${v.base}</td>
+      <td class="v-past">${v.past}</td><td class="v-pp">${v.pp}</td>
+      <td>${badge}</td>
+      <td style="font-size:.78rem"><em>${v.ex}</em><br><span class="es-note">${v.exEs}</span></td>
+      <td><button class="btn-speak-mini" onclick="speak('${exSafe}')">🔊</button></td>
+    </tr>`;
+  });
+}
+renderVerbTable(verbs100);
+
+function filterVerbs(type,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter=type;
+  const q=document.getElementById('verbSearch').value.toLowerCase();
+  applyVerbFilters(type,q);
+}
+function searchVerbs(q){
+  applyVerbFilters(currentFilter,q.toLowerCase());
+}
+function applyVerbFilters(type,q){
+  let list=verbs100;
+  if(type!=='all')list=list.filter(v=>v.type===type);
+  if(q)list=list.filter(v=>v.base.includes(q)||v.es.includes(q)||v.past.includes(q)||v.pp.includes(q));
+  renderVerbTable(list);
+}
+
+/* ---- TABS ---- */
+function showDifficulty(level,btn){
+  document.querySelectorAll('.difficulty-group').forEach(g=>g.classList.remove('active'));
+  document.querySelectorAll('.diff-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('diff-'+level).classList.add('active');
+  btn.classList.add('active');
+}
+function showReadingLevel(id,btn){
+  document.querySelectorAll('.reading-level').forEach(l=>l.classList.remove('active'));
+  document.querySelectorAll('.diff-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ---- RESULT DISPLAY ---- */
+function showResult(id,score,total){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.add('show');
+  let cls,msg;
+  if(score===total){cls='perfect';msg=`🎉 Perfect! ${score}/${total} – Amazing! / ¡Perfecto! ¡Increíble!`;}
+  else if(score>=Math.ceil(total*0.6)){cls='partial';msg=`👍 Good job! ${score}/${total} – Keep practicing! / ¡Buen trabajo!`;}
+  else{cls='poor';msg=`💪 Try again! ${score}/${total} – You can do it! / ¡Tú puedes!`;}
+  el.className='result-area show '+cls;
+  el.textContent=msg;
+}
+
+/* ---- BUILD MULTIPLE CHOICE ---- */
+function buildMC(cId,questions){
+  const c=document.getElementById(cId);
+  if(!c)return;
+  c.innerHTML='';
+  questions.forEach((q,qi)=>{
+    const div=document.createElement('div');
+    div.className='mc-question';
+    const opts=q.options.map((o,oi)=>`<button class="mc-option" data-qi="${qi}" data-oi="${oi}" data-correct="${oi===q.answer}">${o}</button>`).join('');
+    div.innerHTML=`<p>${qi+1}. ${q.q}</p><div class="mc-options">${opts}</div>`;
+    c.appendChild(div);
+  });
+  c.querySelectorAll('.mc-option').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      this.closest('.mc-options').querySelectorAll('.mc-option').forEach(b=>b.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+
+function checkMC(cId,rId){
+  const c=document.getElementById(cId);
+  if(!c)return;
+  const qs=c.querySelectorAll('.mc-question');
+  let score=0;
+  qs.forEach(q=>{
+    const sel=q.querySelector('.mc-option.selected');
+    if(!sel)return;
+    if(sel.dataset.correct==='true'){sel.classList.add('correct');score++;}
+    else{
+      sel.classList.add('wrong');
+      q.querySelectorAll('.mc-option').forEach(b=>{if(b.dataset.correct==='true')b.classList.add('correct');});
+    }
+  });
+  showResult(rId,score,qs.length);
+}
+
+/* ---- BUILD FILL BLANKS ---- */
+function buildFill(cId,data){
+  const c=document.getElementById(cId);
+  if(!c)return;
+  c.innerHTML='';
+  data.forEach((item,i)=>{
+    c.innerHTML+=`<div class="fill-item"><span>${i+1}.</span><span>${item.before}</span><input class="fill-input" id="fi-${cId}-${i}" placeholder="___" autocomplete="off"/><span>${item.after}</span><span class="es-note">${item.hint}</span></div>`;
+  });
+}
+
+function checkFill(cId,rId,data){
+  let score=0;
+  data.forEach((item,i)=>{
+    const inp=document.getElementById(`fi-${cId}-${i}`);
+    if(!inp)return;
+    const val=inp.value.trim().toLowerCase();
+    const correct=item.blank.toLowerCase();
+    if(val===correct){inp.classList.remove('wrong');inp.classList.add('correct');score++;}
+    else{inp.classList.remove('correct');inp.classList.add('wrong');inp.placeholder='→ '+item.blank;}
+  });
+  showResult(rId,score,data.length);
+}
+
+/* ---- MATCHING ---- */
+const matchingPairs=[
+  {word:'First',meaning:'Primero'},
+  {word:'Next',meaning:'Después'},
+  {word:'Then',meaning:'Luego'},
+  {word:'After that',meaning:'Después de eso'},
+  {word:'Finally',meaning:'Finalmente'},
+];
+let matchSelected=null,matchedCount=0;
+
+function buildMatching(){
+  const c=document.getElementById('matching-easy');
+  if(!c)return;
+  const shuffW=[...matchingPairs].sort(()=>Math.random()-.5);
+  const shuffM=[...matchingPairs].sort(()=>Math.random()-.5);
+  c.innerHTML=`
+    <div class="matching-col"><h5>Word / Palabra</h5>${shuffW.map(p=>`<div class="match-item" data-pair="${p.word}" data-side="word">${p.word}</div>`).join('')}</div>
+    <div class="matching-col"><h5>Meaning / Significado</h5>${shuffM.map(p=>`<div class="match-item" data-pair="${p.word}" data-side="meaning">${p.meaning}</div>`).join('')}</div>`;
+  c.querySelectorAll('.match-item').forEach(item=>{
+    item.addEventListener('click',function(){
+      if(this.classList.contains('matched'))return;
+      if(!matchSelected){matchSelected=this;this.classList.add('selected');}
+      else{
+        if(matchSelected===this){this.classList.remove('selected');matchSelected=null;return;}
+        if(matchSelected.dataset.pair===this.dataset.pair&&matchSelected.dataset.side!==this.dataset.side){
+          matchSelected.classList.remove('selected');matchSelected.classList.add('matched');
+          this.classList.add('matched');matchedCount++;matchSelected=null;
+        }else{
+          const prev=matchSelected;matchSelected=null;
+          prev.classList.remove('selected');
+          [prev,this].forEach(el=>{el.classList.add('wrong-match');setTimeout(()=>el.classList.remove('wrong-match'),700);});
+        }
+      }
+    });
+  });
+}
+buildMatching();
+function checkMatching(){showResult('matching-easy-result',matchedCount,matchingPairs.length);}
+
+/* ---- TRUE/FALSE ---- */
+const tfData=[
+  {stmt:'"And" is used to show contrast. / "And" muestra contraste.',ans:false},
+  {stmt:'"Because" gives a reason. / "Because" da una razón.',ans:true},
+  {stmt:'"First" is the last sequencing word. / "First" es la última palabra.',ans:false},
+  {stmt:'"Have" is an irregular verb. / "Have" es irregular.',ans:true},
+  {stmt:'The past of "be" is "beed". / El pasado de "be" es "beed".',ans:false},
+];
+function buildTF(){
+  const c=document.getElementById('tf-exercise');
+  if(!c)return;
+  c.innerHTML='';
+  tfData.forEach((item,i)=>{
+    c.innerHTML+=`<div class="tf-item"><p>${i+1}. ${item.stmt}</p><div class="tf-buttons"><button class="tf-btn" data-tf="${i}" data-val="true">✅ True</button><button class="tf-btn" data-tf="${i}" data-val="false">❌ False</button></div></div>`;
+  });
+  c.querySelectorAll('.tf-btn').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      document.querySelectorAll(`.tf-btn[data-tf="${this.dataset.tf}"]`).forEach(b=>b.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+buildTF();
+function checkTF(){
+  let score=0;
+  tfData.forEach((item,i)=>{
+    document.querySelectorAll(`.tf-btn[data-tf="${i}"]`).forEach(btn=>{
+      if(btn.classList.contains('selected')){
+        if((btn.dataset.val==='true')===item.ans){btn.classList.add('correct');score++;}
+        else btn.classList.add('wrong');
+      }
+    });
+  });
+  showResult('tf-result',score,tfData.length);
+}
+
+/* ---- SENTENCE ORDERING ---- */
+const orderSteps=[
+  {text:'Finally, I eat breakfast.',order:4},
+  {text:'First, I wake up.',order:0},
+  {text:'After that, I get dressed.',order:3},
+  {text:'Next, I brush my teeth.',order:1},
+  {text:'Then, I wash my face.',order:2},
+];
+let orderArr=[...orderSteps].sort(()=>Math.random()-.5);
+
+function buildOrdering(){
+  const c=document.getElementById('ordering-exercise');
+  if(!c)return;
+  c.innerHTML='';
+  orderArr.forEach((step,i)=>{
+    const div=document.createElement('div');
+    div.className='order-item';div.draggable=true;div.dataset.idx=i;
+    div.innerHTML=`<div class="order-num">${i+1}</div><span>${step.text}</span>`;
+    div.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',i);div.classList.add('dragging');});
+    div.addEventListener('dragend',()=>div.classList.remove('dragging'));
+    div.addEventListener('dragover',e=>e.preventDefault());
+    div.addEventListener('drop',e=>{
+      e.preventDefault();
+      const fromIdx=parseInt(e.dataTransfer.getData('text/plain'));
+      const toIdx=parseInt(div.dataset.idx);
+      if(fromIdx===toIdx)return;
+      const [removed]=orderArr.splice(fromIdx,1);orderArr.splice(toIdx,0,removed);
+      buildOrdering();
+    });
+    c.appendChild(div);
+  });
+}
+buildOrdering();
+function checkOrdering(){
+  let score=orderArr.filter((s,i)=>s.order===i).length;
+  showResult('ordering-result',score,orderArr.length);
+}
+
+/* ---- FILL DATA ---- */
+const fillConnEasyData=[
+  {before:'I like dogs',blank:'and',after:'I like cats.',hint:'(add information)'},
+  {before:'I want to play',blank:'but',after:'it is raining.',hint:'(contrast)'},
+  {before:'I study hard',blank:'because',after:'I want to pass.',hint:'(reason)'},
+  {before:'She sings',blank:'and',after:'dances very well.',hint:'(add information)'},
+  {before:'I am tired',blank:'but',after:'I am happy.',hint:'(contrast)'},
+];
+buildFill('fill-conn-easy',fillConnEasyData);
+
+const fillBEData=[
+  {before:'I',blank:'am',after:'a good student.',hint:'(present, I)'},
+  {before:'She',blank:'is',after:'very kind.',hint:'(present, she)'},
+  {before:'They',blank:'are',after:'my friends.',hint:'(present, they)'},
+  {before:'Yesterday, he',blank:'was',after:'at school.',hint:'(past, he)'},
+  {before:'We',blank:'were',after:'happy yesterday.',hint:'(past, we)'},
+  {before:'The books',blank:'are',after:'on the table.',hint:'(present, plural)'},
+];
+buildFill('fill-be',fillBEData);
+
+const fillHaveData=[
+  {before:'I',blank:'have',after:'two brothers.',hint:'(present, I)'},
+  {before:'He',blank:'has',after:'a new bike.',hint:'(present, he)'},
+  {before:'She',blank:'had',after:'a party last week.',hint:'(past)'},
+  {before:'We',blank:'have',after:'English class today.',hint:'(present, we)'},
+  {before:'They',blank:'had',after:'lunch already.',hint:'(past)'},
+  {before:'My dog',blank:'has',after:'big ears.',hint:'(present, it)'},
+];
+buildFill('fill-have',fillHaveData);
+
+const fillMixedData=[
+  {before:'My name is Lily.',blank:'First',after:', I go to school by bus.',hint:'(sequencing)'},
+  {before:'I love science',blank:'because',after:'it is very interesting.',hint:'(connective)'},
+  {before:'My brother',blank:'is',after:'tall and funny.',hint:'(verb BE)'},
+  {before:'We',blank:'had',after:'a great time at the park.',hint:'(verb HAVE, past)'},
+  {before:'I like drawing',blank:'but',after:'I am not very good yet.',hint:'(connective)'},
+  {before:'',blank:'Finally',after:', I said goodbye and went home.',hint:'(sequencing)'},
+];
+buildFill('fill-mixed',fillMixedData);
+
+const fillListen1Data=[
+  {before:'Every morning, I',blank:'have',after:'a routine.',hint:'(verb)'},
+  {before:'',blank:'First',after:', I wake up at seven.',hint:'(sequencing)'},
+  {before:'I eat breakfast',blank:'because',after:'I need energy.',hint:'(connective)'},
+  {before:'',blank:'Finally',after:', I go to school.',hint:'(sequencing)'},
+];
+buildFill('fill-listen1',fillListen1Data);
+
+/* ---- MULTIPLE CHOICE SETS ---- */
+buildMC('mc-seq',[
+  {q:'What word do we use to START a sequence? / ¿Qué palabra usamos para COMENZAR?',options:['Finally','First','After that','Then'],answer:1},
+  {q:'Which word shows the LAST step? / ¿Qué palabra indica el ÚLTIMO paso?',options:['Next','Then','Finally','First'],answer:2},
+  {q:'Which word comes after "Next"? / ¿Qué palabra viene después de "Next"?',options:['First','Finally','Then','None'],answer:2},
+  {q:'"___ that, I brushed my hair." Which word fits?',options:['First','Next','After','Finally'],answer:2},
+  {q:'What word is used for the 2nd step in a sequence?',options:['First','Next','Finally','After that'],answer:1},
+]);
+
+buildMC('comp-medium',[
+  {q:"What is the owner's name?",options:['Luna','Tom','Sam','Ana'],answer:1},
+  {q:"When does he feed his cat?",options:['At night','After school','In the morning','At lunch'],answer:2},
+  {q:"Why is Luna happy?",options:['She has toys','She has a loving owner','She sleeps a lot','She eats much'],answer:1},
+]);
+
+buildMC('reg-irr-exercise',[
+  {q:'What type of verb is "go"? / ¿Qué tipo de verbo es "go"?',options:['Regular','Irregular'],answer:1},
+  {q:'What type of verb is "play"? / ¿Qué tipo de verbo es "play"?',options:['Regular','Irregular'],answer:0},
+  {q:'What type of verb is "write"?',options:['Regular','Irregular'],answer:1},
+  {q:'What type of verb is "walk"?',options:['Regular','Irregular'],answer:0},
+  {q:'"Have" in the past becomes "had". Is "have" regular or irregular?',options:['Regular','Irregular'],answer:1},
+  {q:'"Work" in the past becomes "worked". Is "work" regular or irregular?',options:['Regular','Irregular'],answer:0},
+]);
+
+buildMC('rq-easy1',[
+  {q:"What is the dog's name?",options:['Buddy','Max','Rex','Spot'],answer:1},
+  {q:"What color is Max?",options:['White','Black','Big and brown','Small and grey'],answer:2},
+  {q:"Why is Max happy?",options:['He eats a lot','He loves to play','He sleeps all day','He has friends'],answer:1},
+  {q:"What does Ana do FINALLY?",options:['Feeds Max','Walks Max','Gives Max a bath','Plays with Max'],answer:2},
+]);
+
+buildMC('rq-medium1',[
+  {q:"Where is the garden?",options:['At home','At school','In the park','In the forest'],answer:1},
+  {q:"What did they put in the holes?",options:['Flowers','Water','Seeds','Soil'],answer:2},
+  {q:"Why were they happy?",options:['They got a prize','Their hard work paid off','It was sunny','They played all day'],answer:1},
+  {q:"What did they have FINALLY?",options:['Flowers','Fresh vegetables','A big tree','New seeds'],answer:1},
+]);
+
+buildMC('rq-hard1',[
+  {q:"When did the adventure happen?",options:['Last winter','Last summer','Last spring','Last fall'],answer:1},
+  {q:"Why did they pack warm clothes?",options:['They were cold','Weather could change quickly','It was required','They liked fashion'],answer:1},
+  {q:"How long did they drive?",options:['One hour','Two hours','Three hours','Four hours'],answer:2},
+  {q:"How did the narrator feel at the end?",options:['Angry','Tired but happy','Bored','Scared'],answer:1},
+]);
+
+buildMC('lq1',[
+  {q:"What time does the person wake up?",options:['6:00','7:00','8:00','9:00'],answer:1},
+  {q:"Why does the person eat breakfast?",options:['Because they are bored','Because they need energy','Because it is delicious','Because mom says so'],answer:1},
+  {q:"What does the person put on?",options:['Shoes','School uniform','Pajamas','A coat'],answer:1},
+]);
+
+buildMC('lq2',[
+  {q:"What are they making?",options:['Lemonade','Orange juice','Apple juice','Milk'],answer:1},
+  {q:"Why do they cut the oranges?",options:['To eat them','Because they need to squeeze them','To make art','Because they are big'],answer:1},
+  {q:"Which connective appears in the activity?",options:['and','because','but','first'],answer:2},
+]);
+
+buildMC('lq3',[
+  {q:"When was the birthday?",options:['Last Friday','Last Saturday','Last Sunday','Last Monday'],answer:1},
+  {q:"What gift did the narrator receive?",options:['A toy','A phone','A bicycle','Books'],answer:2},
+  {q:"Why was the narrator a little sad?",options:['The cake was bad','The day had to end','Friends left early','It rained'],answer:1},
+]);
+
+/* ---- CREATIVE WRITING CHECK ---- */
+function checkWriting(){
+  const text=document.getElementById('writing-task').value.toLowerCase();
+  const words=['first','next','then','after that','finally'];
+  const found=words.filter(w=>text.includes(w));
+  const result=document.getElementById('writing-result');
+  result.classList.add('show');
+  if(found.length>=4){result.className='result-area show perfect';result.textContent=`🎉 Excellent! You used ${found.length} sequencing words: ${found.join(', ')}. Great writing! / ¡Excelente escritura!`;}
+  else if(found.length>=2){result.className='result-area show partial';result.textContent=`👍 Good! You used ${found.length} words. Try to add more! Missing: ${words.filter(w=>!text.includes(w)).join(', ')}`;}
+  else{result.className='result-area show poor';result.textContent=`💪 Try to use more sequencing words! Remember: First, Next, Then, After that, Finally. / ¡Usa más palabras de secuencia!`;}
+}
+
+/* ---- INIT ---- */
+showSection('home');
+</script>
+</body>
+</html>
